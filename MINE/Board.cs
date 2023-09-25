@@ -26,7 +26,7 @@ public class Board: Panel
             {
                 btnBoard[i,j] = new Button();
                 btnBoard[i, j].Content = "0";
-                
+                btnBoard[i, j].Click += onClick;
                 rowStackPanel.Children.Add(btnBoard[i,j]);
                 
 
@@ -36,7 +36,12 @@ public class Board: Panel
         this.Children.Add(colunmStackPanel);
     }
 
- 
+    private void onClick(object? sender, RoutedEventArgs e)
+    {
+        Debug.WriteLine(sender);
+        (sender as Button).Content = "T";
+        (sender as Button).IsEnabled = false;
+    }
 
 
     public Board(int column, int row)
