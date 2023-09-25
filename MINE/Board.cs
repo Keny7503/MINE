@@ -1,9 +1,11 @@
+using System.Diagnostics;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Layout;
 
 namespace MINE;
 
-public class Board: StackPanel
+public class Board: Panel
 {
     private int column;
     private int row;
@@ -23,13 +25,18 @@ public class Board: StackPanel
             for (int j = 0; j < row; j++)
             {
                 btnBoard[i,j] = new Button();
+                btnBoard[i, j].Content = "0";
+                
                 rowStackPanel.Children.Add(btnBoard[i,j]);
                 
-                
+
+
             }
         }
         this.Children.Add(colunmStackPanel);
     }
+
+ 
 
 
     public Board(int column, int row)

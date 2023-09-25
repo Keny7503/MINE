@@ -8,7 +8,7 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        var board = new Board(3, 2);
+        var board = new Board(10, 10);
         RootPanel.Children.Add(board);
         board.SetTable();
         //Test comment
