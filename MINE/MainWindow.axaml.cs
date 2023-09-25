@@ -7,7 +7,10 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        
+
+        var board = new Board(3, 2);
+        RootPanel.Children.Add(board);
+        board.SetTable();
         //Test comment
         int[][] placeHolderTable = { 
             new int[]{1,9,2},
