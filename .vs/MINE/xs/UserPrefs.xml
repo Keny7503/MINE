@@ -1,0 +1,40 @@
+﻿<Properties StartupConfiguration="{6F8D2971-1C98-4A8A-94EA-D2708C4EFEA8}|Default">
+  <MonoDevelop.Ide.ItemProperties.MINE PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workbench ActiveDocument="MINE/Data/BoardData.cs">
+    <Files>
+      <File FileName="MINE/App.axaml.cs" Line="1" Column="1" />
+      <File FileName="MINE/App.axaml" Line="1" Column="1" />
+      <File FileName="MINE/MainWindow.axaml" Line="1" Column="1" />
+      <File FileName="MINE/Program.cs" Line="1" Column="1" />
+      <File FileName="MINE/UI/MineCell.cs" Line="1" Column="1" />
+      <File FileName="MINE/MainWindow.axaml.cs" Line="20" Column="39" />
+      <File FileName="MINE/UI/Board.cs" Line="14" Column="2" />
+      <File FileName="MINE/UI/Cell.cs" Line="31" Column="29" />
+      <File FileName="MINE/Data/EmptyClass.cs" Line="11" Column="4" />
+      <File FileName="MINE/Data/EmptyClass.cs" Line="11" Column="3" />
+      <File FileName="MINE/UI/NumCell.cs" Line="1" Column="1" />
+      <File FileName="MINE/UI/ImageHelper.cs" Line="1" Column="1" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="MINE">
+            <Node name="MINE">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Data" expanded="True" selected="True" />
+              <Node name="UI" expanded="True" />
+              <Node name="App.axaml" expanded="True" />
+              <Node name="MainWindow.axaml" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MultiItemStartupConfigurations />
+</Properties>
