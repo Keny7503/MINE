@@ -6,6 +6,7 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using MINE.UI;
 
 namespace MINE;
 
@@ -28,9 +29,19 @@ public class Board: Panel
             colunmStackPanel.Children.Add(rowStackPanel);
             for (int j = 0; j < row; j++)
             {
-                btnBoard[i,j] = new Cell();
+
+                if (table[i, j] > 0 && table[i, j] < 9)
+                {
+                    btnBoard[i,j] = new NumCell(table[i,j]);
+
+                }
+                else
+                {
+                    btnBoard[i,j] = new MineCell();
+                }
+
                 rowStackPanel.Children.Add(btnBoard[i,j]);
-                var bt = new TextBlock();
+                
 
              
             }

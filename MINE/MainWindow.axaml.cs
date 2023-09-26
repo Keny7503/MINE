@@ -8,7 +8,12 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        int[,] placeHolderTable = {{1,2,3},{4,5,6},{7,8,9}};
+        int[,] placeHolderTable =
+        {
+            {1,2,3},
+            {4,5,6},
+            {7,8,0}
+        };
 
         
         var board = new Board(placeHolderTable.GetLength(0), placeHolderTable.GetLength(1));
