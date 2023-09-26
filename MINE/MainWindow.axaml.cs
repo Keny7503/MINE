@@ -8,14 +8,13 @@ public partial class MainWindow : Window
     {
         InitializeComponent();
 
-        var board = new Board(10, 10);
-        RootPanel.Children.Add(board);
-        board.SetTable();
-        //Test comment
-        int[][] placeHolderTable = { 
-            new int[]{1,9,2},
-            new int[]{1,2,9}, 
-            new int[]{0,1,1}};
+        int[,] placeHolderTable = {{1,2,3},{4,5,6},{7,8,9}};
+
         
+        var board = new Board(placeHolderTable.GetLength(0), placeHolderTable.GetLength(1));
+        RootPanel.Children.Add(board);
+        board.SetTable(placeHolderTable);
+        //Test comment
+
     }
 }

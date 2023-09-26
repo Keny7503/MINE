@@ -1,7 +1,11 @@
+using System;
 using System.Diagnostics;
 using Avalonia.Controls;
+using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 
 namespace MINE;
 
@@ -9,11 +13,11 @@ public class Board: Panel
 {
     private int column;
     private int row;
-    public Button[,] btnBoard;
+    public Cell[,] btnBoard;
 
 
 
-    public void SetTable()
+    public void SetTable(int[,] table)
     {
         var colunmStackPanel = new StackPanel();
         colunmStackPanel.Orientation = Orientation.Vertical;
@@ -24,32 +28,27 @@ public class Board: Panel
             colunmStackPanel.Children.Add(rowStackPanel);
             for (int j = 0; j < row; j++)
             {
-                btnBoard[i,j] = new Button();
-                btnBoard[i, j].Content = "0";
-                btnBoard[i, j].Click += onClick;
+                btnBoard[i,j] = new Cell();
                 rowStackPanel.Children.Add(btnBoard[i,j]);
-                
+                var bt = new TextBlock();
 
-
+             
             }
         }
         this.Children.Add(colunmStackPanel);
     }
 
-    private void onClick(object? sender, RoutedEventArgs e)
-    {
-        Debug.WriteLine(sender);
-        (sender as Button).Content = "T";
-        (sender as Button).IsEnabled = false;
-    }
 
 
     public Board(int column, int row)
     {
+        
         this.column = column;
         this.row = row;
-        btnBoard= new Button[column,row];
-        // btnBoard[2, 2] = new Button();
+        btnBoard= new Cell[column,row];
+
+        
+
     }
     
 }
