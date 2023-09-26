@@ -14,12 +14,15 @@ public class Board: Panel
 {
     private int column;
     private int row;
-    public Cell[,] btnBoard;
+    public Cell[,] btnBoard ;
 
 
     // seperate setting up creating UI from the contructor for more freedom when creating and using this class
-    public void SetTable(int[,] table)  
+    public void SetTable(int[,] table)
     {
+        column = table.GetLength(0);
+        row = table.GetLength(1);
+        
         
         // create StackPanels on another StackPanel to make a grid of Cell
         var colunmStackPanel = new StackPanel();
@@ -32,11 +35,15 @@ public class Board: Panel
             for (int j = 0; j < row; j++)
             {
                 // the table parameter use for mapping value from 0 to 9 to Cell on screen with 9 representing mines
-                if (table[i, j] >= 0 && table[i, j] < 9)
+                if (table[i, j] > 0 && table[i, j] < 9)
                 {
                     btnBoard[i,j] = new NumCell(table[i,j]);
                 }
-                else 
+                else if (table[i, j] == 0)
+                {
+                    btnBoard[i, j] = new EmptyCell();
+                }
+                else
                 {
                     btnBoard[i,j] = new MineCell();
                 }
@@ -47,18 +54,30 @@ public class Board: Panel
             }
         }
         this.Children.Add(colunmStackPanel);
+
+
+        // var testBtn = new Button();
+        // colunmStackPanel.Children.Add(testBtn);
+        // testBtn.Click += onClick;
+        //
+        // void onClick(object? sender, RoutedEventArgs e)
+        // {
+        //     ClickAt(0,0);
+        //     Debug.WriteLine("testBtn");
+        // }
     }
 
 
-    // contructor only use for pre-determing the grid of Cell
-    public Board(int column, int row)
+
+
+    public void ClickAt(NumCell cell)
     {
-        
-        this.column = column;
-        this.row = row;
-        btnBoard= new Cell[column,row];
-
-        
+        cell.ExternalClick();
     }
-    
+
+    public Board()
+    {
+        btnBoard= new Cell[10,10];
+    }
+
 }

@@ -1,4 +1,6 @@
 using System;
+using System.Diagnostics;
+using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 
@@ -19,8 +21,31 @@ public class NumCell: Cell
 
     protected override void ExtentFuctionLeftClick()
     {
-        _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/"+_number+".png")));
+        if (_number>0&&_number < 9) // Safty gate
+        {
+            _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/"+_number+".png")));
 
+        }
+
+    }
+
+    protected override void onLeftClick(object? sender, RoutedEventArgs e)
+    {
+        
+        ExternalClick();
+    }
+
+    public void ExternalClick()
+    {
+        if (!_flaged)
+        {
+            this.IsEnabled = false;
+            Debug.WriteLine("L");
+            _revealed = true;
+            ExtentFuctionLeftClick();
+            
+            
+        }
     }
 
 

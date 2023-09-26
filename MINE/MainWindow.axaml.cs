@@ -11,7 +11,7 @@ public partial class MainWindow : Window
 
         int[,] placeHolderTable =
         {
-            {1,2,3},
+            {0,2,3},
             {4,5,6},
             {8,0,9}
         };
@@ -19,7 +19,8 @@ public partial class MainWindow : Window
         // boardData.getBoard();
 
         
-        var board = new Board(placeHolderTable.GetLength(0), placeHolderTable.GetLength(1));
+        var board = new Board();
+
         RootPanel.Children.Add(board);
         board.SetTable(placeHolderTable);
         //Test comment

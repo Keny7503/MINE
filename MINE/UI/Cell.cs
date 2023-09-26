@@ -17,7 +17,7 @@ namespace MINE;
 public class Cell :Panel
 {
 
-    private bool _revealed;
+    protected bool _revealed;
     protected bool _flaged;
     
     
@@ -49,8 +49,9 @@ public class Cell :Panel
 
     }
 
-    private void onLeftClick(object? sender, RoutedEventArgs e)     // sender this the object
+    protected virtual void onLeftClick(object? sender, RoutedEventArgs e)     // sender this the object
     {
+        
         if (!_flaged)
         {
             (sender as Button).IsEnabled = false;
@@ -95,5 +96,7 @@ public class Cell :Panel
         
     }
     protected virtual void ExtentFuctionRightClick() { }
+    
+    
 
 }
