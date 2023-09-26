@@ -9,7 +9,12 @@ public class MineCell: Cell
     public MineCell()
     {
         new Cell();
-        _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/mine.png")));
+        
 
+    }
+
+    protected override void ExtentFuctionLeftClick()
+    {
+        _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/mine.png")));
     }
 }

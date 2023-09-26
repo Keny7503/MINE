@@ -12,47 +12,47 @@ using MINE.UI;
 
 namespace MINE;
 
+
+// This Class is intended to be inherited
 public class Cell :Panel
 {
 
     private bool _revealed;
     protected bool _flaged;
     
-
+    
     protected Button _button;
     protected Image _image;
     public Cell()
     {
-        // var image = new Uri("pack://application:,,,/MINE;component/UI/1.png");
+        // Set up innitial value for Cell
         _revealed = false;
         _flaged = false;
         
         _button = new Button();
         _button.Height = 40;
         _button.Width = 40;
+        _button.Opacity = 0.5;
         
         _image = new Image();
         _image.Height = 40;
         _image.Width = 40;
-        
-        
         _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/cell.png")));
+        
         this.Children.Add(_image);
-
         this.Children.Add(_button);
         
         
-        // this.Content = "O";
+        // add method to events to handel left mouse click and mouse right click 
         _button.PointerPressed += onRightClick;
         _button.Click += onLeftClick;
 
     }
 
-    private void onLeftClick(object? sender, RoutedEventArgs e)
+    private void onLeftClick(object? sender, RoutedEventArgs e)     // sender this the object
     {
         if (!_flaged)
         {
-            (sender as Button).Content = "L";
             (sender as Button).IsEnabled = false;
             Debug.WriteLine("L");
 
@@ -69,7 +69,6 @@ public class Cell :Panel
     {
         if (e.Pointer.IsPrimary)
         {
-            (sender as Button).Content = "R";
             Debug.WriteLine("R");
 
             if (!_revealed)
