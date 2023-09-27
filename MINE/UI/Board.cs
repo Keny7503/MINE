@@ -20,19 +20,19 @@ public class Board: Panel
     // seperate setting up creating UI from the contructor for more freedom when creating and using this class
     public void SetTable(int[,] table)
     {
-        column = table.GetLength(0);
-        row = table.GetLength(1);
+        column = table.GetLength(1);
+        row = table.GetLength(0);
         
         
         // create StackPanels on another StackPanel to make a grid of Cell
         var colunmStackPanel = new StackPanel();
         colunmStackPanel.Orientation = Orientation.Vertical;
-        for (int i = 0; i < column; i++)
+        for (int i = 0; i < row; i++)
         {
             var rowStackPanel = new StackPanel();
             rowStackPanel.Orientation = Orientation.Horizontal;
             colunmStackPanel.Children.Add(rowStackPanel);
-            for (int j = 0; j < row; j++)
+            for (int j = 0; j < column; j++)
             {
                 // the table parameter use for mapping value from 0 to 9 to Cell on screen with 9 representing mines
                 if (table[i, j] > 0 && table[i, j] < 9)
@@ -77,7 +77,7 @@ public class Board: Panel
 
     public Board()
     {
-        btnBoard= new Cell[10,10];
+        btnBoard= new Cell[15,20];
     }
 
 }
