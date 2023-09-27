@@ -14,7 +14,6 @@ public class NumCell: Cell
     public NumCell(int number)
     {
         _number = number;
-        new Cell();
         _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/cell.png")));
         
     }

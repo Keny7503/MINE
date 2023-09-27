@@ -6,11 +6,10 @@ namespace MINE.UI;
 
 public class MineCell: Cell
 {
+    
     public MineCell()
     {
-        new Cell();
         
-
     }
 
     protected override void ExtentFuctionLeftClick()
