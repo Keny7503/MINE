@@ -1,28 +1,24 @@
 using System;
 using System.Diagnostics;
-using System.Formats.Asn1;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
-using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
-using Avalonia.Styling;
-using MINE.UI;
 
-namespace MINE;
+namespace MINE.UI;
 
 
 // This Class is intended to be inherited
 public class Cell :Panel
 {
 
-    protected bool _revealed;
+    public bool _revealed;
     protected bool _flaged;
     
     
-    protected Button _button;
-    protected Image _image;
+    public readonly Button _button;
+    protected readonly Image _image;
     public Cell()
     {
         // Set up innitial value for Cell
@@ -32,7 +28,7 @@ public class Cell :Panel
         _button = new Button();
         _button.Height = 40;
         _button.Width = 40;
-        _button.Opacity = 0.5;
+        _button.Opacity = 0.0;
         
         _image = new Image();
         _image.Height = 40;
@@ -54,7 +50,7 @@ public class Cell :Panel
         
         if (!_flaged)
         {
-            (sender as Button).IsEnabled = false;
+            ((sender as Button)!).IsEnabled = false;
             Debug.WriteLine("L");
 
             _revealed = true;
@@ -87,7 +83,7 @@ public class Cell :Panel
             }
 
             ExtentFuctionRightClick();
-            return;
+   
         }
     }
 

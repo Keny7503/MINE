@@ -28,25 +28,36 @@ namespace MINE.Data
                 }
             }
 
+            Board[1, 0].IsMine = true;
+            Board[1, 0].SurroundingMine = 9;
+            Board[3, 0].IsMine = true;
+            Board[3, 0].SurroundingMine = 9;
+            Board[4, 0].IsMine = true;
+            Board[4, 0].SurroundingMine = 9;
+            Board[7, 0].IsMine = true;
+            Board[7, 0].SurroundingMine = 9;
+            Board[9, 0].IsMine = true;
+            Board[9, 0].SurroundingMine = 9;
+
             //place mine
-            for (int i = 0; i < height; i++)
-            {
-                for (int y = 0; y < width; y++)
-                {
-                    Random temp = new Random();
-                    int temp2 = temp.Next(1, 100);
-                    if (temp2 > 0 && temp2 <= 20)
-                    {
-                        Board[i, y].IsMine = true;
-                        Board[i, y].SurroundingMine = 9;
-                    }
-                    else
-                    {
-                        Board[i, y].IsMine = false;
-                        Board[i, y].SurroundingMine = 0;
-                    }
-                }
-            }
+            //for (int i = 0; i < height; i++)
+            //{
+            //    for (int y = 0; y < width; y++)
+            //    {
+            //        Random temp = new Random();
+            //        int temp2 = temp.Next(1, 100);
+            //        if (temp2 > 0 && temp2 <= 20)
+            //        {
+            //            Board[i, y].IsMine = true;
+            //            Board[i, y].SurroundingMine = 9;
+            //        }
+            //        else
+            //        {
+            //            Board[i, y].IsMine = false;
+            //            Board[i, y].SurroundingMine = 0;
+            //        }
+            //    }
+            //}
 
 
             //numberring cell
