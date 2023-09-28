@@ -45,7 +45,7 @@ namespace MINE.Data
 				cell[6] = (Row + 2) * 10 + Col;
 				cell[7] = (Row + 2) * 10 + (Col + 1);
 			}
-			else
+			else if(Col>=10)
 			{
                 cell[0] = Row * 100 + (Col - 1);
                 cell[1] = Row * 100 + Col;

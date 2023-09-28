@@ -13,32 +13,19 @@ public class Board: Panel
     // seperate setting up creating UI from the contructor for more freedom when creating and using this class
     public void SetTable(int[,] table)
     {
-<<<<<<< HEAD
-        column = table.GetLength(1);
-        row = table.GetLength(0);
-=======
         _column = table.GetLength(0);
         _row = table.GetLength(1);
->>>>>>> 7433012aeac66169e3c5e0804ffdb9d12a626b5b
         
         
         // create StackPanels on another StackPanel to make a grid of Cell
         var colunmStackPanel = new StackPanel();
         colunmStackPanel.Orientation = Orientation.Vertical;
-<<<<<<< HEAD
-        for (int i = 0; i < row; i++)
-=======
         for (int i = 0; i < _column; i++)
->>>>>>> 7433012aeac66169e3c5e0804ffdb9d12a626b5b
         {
             var rowStackPanel = new StackPanel();
             rowStackPanel.Orientation = Orientation.Horizontal;
             colunmStackPanel.Children.Add(rowStackPanel);
-<<<<<<< HEAD
-            for (int j = 0; j < column; j++)
-=======
             for (int j = 0; j < _row; j++)
->>>>>>> 7433012aeac66169e3c5e0804ffdb9d12a626b5b
             {
                 // the table parameter use for mapping value from 0 to 9 to Cell on screen with 9 representing mines
                 if (table[i, j] > 0 && table[i, j] < 9)
@@ -122,9 +109,6 @@ public class Board: Panel
 
     public void ClickAt(int column, int row)
     {
-<<<<<<< HEAD
-        btnBoard= new Cell[15,20];
-=======
         if (CellBoard[column, row]._revealed )
         {
             return;
@@ -155,10 +139,9 @@ public class Board: Panel
 
     }
     // Contructor use for pre-determine the size of the array
-    public Board(int column,int row)
+    public Board(int row, int column)
     {
         CellBoard= new Cell[row,column];
->>>>>>> 7433012aeac66169e3c5e0804ffdb9d12a626b5b
     }
 
 }
