@@ -139,7 +139,7 @@ public class Board: Panel
 
     }
     // Contructor use for pre-determine the size of the array
-    public Board(int column,int row)
+    public Board(int row, int column)
     {
         CellBoard= new Cell[row,column];
     }
