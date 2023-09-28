@@ -109,27 +109,17 @@ public class Board: Panel
 
     public void ClickAt(int column, int row)
     {
-        if (CellBoard[column, row]._revealed )
+
+        // Prevent clicking if the cell is mine or flagged or revealed
+        if ((CellBoard[column, row].GetType() == typeof(MineCell))||
+            (CellBoard[column, row]._flaged)||
+            CellBoard[column, row]._revealed)
         {
             return;
-            
-            // ClickSurrroundCell(column,row);
         }
+        (CellBoard[column,row] as NumCell)?.ExternalClick();
 
-        // if (btnBoard[column, row].GetType()==typeof(EmptyCell))
-        // {
-        //     Debug.WriteLine("empty Clicked");
-        //     ClickSurrroundCell(column,row);
-        // }
-        // Debug.WriteLine("auto Clicked"+(btnBoard[column, row].GetType()==typeof(EmptyCell)));
-
-        // In theory, this if statement should not be false but it was add for safety
-        if (CellBoard[column, row].GetType() != typeof(MineCell))
-        {
-            (CellBoard[column,row] as NumCell)?.ExternalClick();
-            
-        }
-
+        
         if (CellBoard[column, row].GetType() == typeof(EmptyCell))
         {
             ClickSurrroundCell(column,row);
@@ -138,6 +128,20 @@ public class Board: Panel
 
 
     }
+
+    public void RevealAll()
+    {
+        for (int i = 0; i < _column; i++)
+        {
+            for (int j = 0; j < _row; j++)
+            {
+                ClickAt(i,j);
+            }
+        }
+    }
+
+
+
     // Contructor use for pre-determine the size of the array
     public Board(int row, int column)
     {

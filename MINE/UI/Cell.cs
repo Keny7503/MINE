@@ -1,10 +1,13 @@
 using System;
 using System.Diagnostics;
+using Avalonia.Animation;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
+using Avalonia.Styling;
 
 namespace MINE.UI;
 
@@ -14,9 +17,9 @@ public class Cell :Panel
 {
 
     public bool _revealed;
-    protected bool _flaged;
-    
-    
+    public bool _flaged;
+
+
     public readonly Button _button;
     protected readonly Image _image;
     public Cell()
@@ -24,11 +27,46 @@ public class Cell :Panel
         // Set up innitial value for Cell
         _revealed = false;
         _flaged = false;
+
+        _button = new Button
+        {
+            Width = 40,
+            Height = 40,
+            Styles =
+            {
+                new Style(x => x.OfType<Button>())
+                {
+                    Setters =
+                    {
+                        new Setter(
+                            Button.OpacityProperty,
+                            0.0)
+                    },
+                },
+                new Style(x => x.OfType<Button>().Class(":pointerover"))
+                {
+                    Setters =
+                    {
+                        new Setter(
+                            Button.OpacityProperty,
+                            1.0)
+                    },
+                },
+            },
+            Transitions = new Transitions
+            {
+                new DoubleTransition()
+                {
+                    Property = Button.OpacityProperty,
+                    Duration = TimeSpan.FromSeconds(0.1),
+                }
+            }
+        };
         
-        _button = new Button();
-        _button.Height = 40;
-        _button.Width = 40;
-        _button.Opacity = 0.0;
+        
+        // _button.Height = 40;
+        // _button.Width = 40;
+        // _button.Opacity = 0.0;
         
         _image = new Image();
         _image.Height = 40;
