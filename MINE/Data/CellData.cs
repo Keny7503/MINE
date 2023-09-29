@@ -34,7 +34,7 @@ namespace MINE.Data
         public int[] surroundingCell(int Row, int Col)
 		{
 			int[] cell = new int[8];
-			if(Col<10)
+			if(Col<9)
 			{
 				cell[0] = Row * 10 + (Col - 1);
 				cell[1] = Row * 10 + Col;
@@ -45,7 +45,7 @@ namespace MINE.Data
 				cell[6] = (Row + 2) * 10 + Col;
 				cell[7] = (Row + 2) * 10 + (Col + 1);
 			}
-			else if(Col>=10)
+			else if(Col>=9)
 			{
                 cell[0] = Row * 100 + (Col - 1);
                 cell[1] = Row * 100 + Col;

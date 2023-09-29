@@ -28,17 +28,6 @@ namespace MINE.Data
                 }
             }
 
-            //Board[1, 0].IsMine = true;
-            //Board[1, 0].SurroundingMine = 9;
-            //Board[3, 0].IsMine = true;
-            //Board[3, 0].SurroundingMine = 9;
-            //Board[4, 0].IsMine = true;
-            //Board[4, 0].SurroundingMine = 9;
-            //Board[7, 0].IsMine = true;
-            //Board[7, 0].SurroundingMine = 9;
-            //Board[9, 0].IsMine = true;
-            //Board[9, 0].SurroundingMine = 9;
-
             //place mine
             for (int i = 0; i < height; i++)
             {
@@ -68,105 +57,99 @@ namespace MINE.Data
                     if (Board[i, y].IsMine == true && Board[i, y].SurroundingMine>=9)
                     {
                         int[] surroundingCell = Board[i, y].surroundingCell(i, y);
-                        
-                        if (i == 0)                   //numberring row 1
+
+                        if (i == 0 && y == 0)//numberring corner cell no.1
                         {
-                            if ( y == 0 )             //numberring corner cell no.1
+                            Board[0, 1].SurroundingMine++;
+                            Board[1, 0].SurroundingMine++;
+                            Board[1, 1].SurroundingMine++;
+                        }
+                        else if(i == 0 && y == width - 1)//numberring corner cell no.2
+                        {
+                            if (y < 9)
                             {
-                                Board[0, 1].SurroundingMine++;
-                                Board[1, 0].SurroundingMine++;
-                                Board[1, 1].SurroundingMine++;
+                                Board[surroundingCell[3] / 10 - 1, surroundingCell[3] % 10].SurroundingMine++;
+                                Board[surroundingCell[5] / 10 - 1, surroundingCell[5] % 10].SurroundingMine++;
+                                Board[surroundingCell[6] / 10 - 1, surroundingCell[6] % 10].SurroundingMine++;
                             }
-                            else if ( y == width - 1) //numberring corner cell no.2
+                            else
                             {
-                                if(y<10)
-                                {
-                                    Board[surroundingCell[3] / 10 - 1, surroundingCell[3] % 10].SurroundingMine++;
-                                    Board[surroundingCell[5] / 10 - 1, surroundingCell[5] % 10].SurroundingMine++;
-                                    Board[surroundingCell[6] / 10 - 1, surroundingCell[6] % 10].SurroundingMine++;
-                                }
-                                else
-                                {
-                                    Board[surroundingCell[3] / 100 - 1, surroundingCell[3] % 100].SurroundingMine++;
-                                    Board[surroundingCell[5] / 100 - 1, surroundingCell[5] % 100].SurroundingMine++;
-                                    Board[surroundingCell[6] / 100 - 1, surroundingCell[6] % 100].SurroundingMine++;
-                                }
-                            }
-                            else                      //numberring other cell on row 1
-                            {
-                                if (y < 10)
-                                {
-                                    Board[surroundingCell[3] / 10 - 1, surroundingCell[3] % 10].SurroundingMine++;
-                                    Board[surroundingCell[4] / 10 - 1, surroundingCell[4] % 10].SurroundingMine++;
-                                    Board[surroundingCell[5] / 10 - 1, surroundingCell[5] % 10].SurroundingMine++;
-                                    Board[surroundingCell[6] / 10 - 1, surroundingCell[6] % 10].SurroundingMine++;
-                                    Board[surroundingCell[7] / 10 - 1, surroundingCell[7] % 10].SurroundingMine++;
-                                }
-                                else
-                                {
-                                    Board[surroundingCell[3] / 100 - 1, surroundingCell[3] % 100].SurroundingMine++;
-                                    Board[surroundingCell[4] / 100 - 1, surroundingCell[4] % 100].SurroundingMine++;
-                                    Board[surroundingCell[5] / 100 - 1, surroundingCell[5] % 100].SurroundingMine++;
-                                    Board[surroundingCell[6] / 100 - 1, surroundingCell[6] % 100].SurroundingMine++;
-                                    Board[surroundingCell[7] / 100 - 1, surroundingCell[7] % 100].SurroundingMine++;
-                                }
+                                Board[surroundingCell[3] / 100 - 1, surroundingCell[3] % 100].SurroundingMine++;
+                                Board[surroundingCell[5] / 100 - 1, surroundingCell[5] % 100].SurroundingMine++;
+                                Board[surroundingCell[6] / 100 - 1, surroundingCell[6] % 100].SurroundingMine++;
                             }
                         }
-                        else if ( i == height - 1 )   //numberring last row
+                        else if(i == height - 1 && y == 0)//numberring corner cell no.3
                         {
-                            if (y == 0)               //numberring corner cell no.3
+                            if (y < 9)
                             {
-                                if (y < 10)
-                                {
-                                    Board[surroundingCell[1] / 10 - 1, surroundingCell[1] % 10].SurroundingMine++;
-                                    Board[surroundingCell[2] / 10 - 1, surroundingCell[2] % 10].SurroundingMine++;
-                                    Board[surroundingCell[4] / 10 - 1, surroundingCell[4] % 10].SurroundingMine++;
-                                }
-                                else
-                                {
-                                    Board[surroundingCell[1] / 100 - 1, surroundingCell[1] % 100].SurroundingMine++;
-                                    Board[surroundingCell[2] / 100 - 1, surroundingCell[2] % 100].SurroundingMine++;
-                                    Board[surroundingCell[4] / 100 - 1, surroundingCell[4] % 100].SurroundingMine++;
-                                }
+                                Board[surroundingCell[1] / 10 - 1, surroundingCell[1] % 10].SurroundingMine++;
+                                Board[surroundingCell[2] / 10 - 1, surroundingCell[2] % 10].SurroundingMine++;
+                                Board[surroundingCell[4] / 10 - 1, surroundingCell[4] % 10].SurroundingMine++;
                             }
-                            else if (y == width - 1)  //numberring corner cell no.4
+                            else
                             {
-                                if (y < 10)
-                                {
-                                    Board[surroundingCell[0] / 10 - 1, surroundingCell[0] % 10].SurroundingMine++;
-                                    Board[surroundingCell[1] / 10 - 1, surroundingCell[1] % 10].SurroundingMine++;
-                                    Board[surroundingCell[3] / 10 - 1, surroundingCell[3] % 10].SurroundingMine++;
-                                }
-                                else
-                                {
-                                    Board[surroundingCell[0] / 100 - 1, surroundingCell[0] % 100].SurroundingMine++;
-                                    Board[surroundingCell[1] / 100 - 1, surroundingCell[1] % 100].SurroundingMine++;
-                                    Board[surroundingCell[3] / 100 - 1, surroundingCell[3] % 100].SurroundingMine++;
-                                }
-                            }
-                            else                      //numberring other cell on lart row
-                            {
-                                if (y < 10)
-                                {
-                                    Board[surroundingCell[0] / 10 - 1, surroundingCell[0] % 10].SurroundingMine++;
-                                    Board[surroundingCell[1] / 10 - 1, surroundingCell[1] % 10].SurroundingMine++;
-                                    Board[surroundingCell[2] / 10 - 1, surroundingCell[2] % 10].SurroundingMine++;
-                                    Board[surroundingCell[3] / 10 - 1, surroundingCell[3] % 10].SurroundingMine++;
-                                    Board[surroundingCell[4] / 10 - 1, surroundingCell[4] % 10].SurroundingMine++;
-                                }
-                                else
-                                {
-                                    Board[surroundingCell[0] / 100 - 1, surroundingCell[0] % 100].SurroundingMine++;
-                                    Board[surroundingCell[1] / 100 - 1, surroundingCell[1] % 100].SurroundingMine++;
-                                    Board[surroundingCell[2] / 100 - 1, surroundingCell[2] % 100].SurroundingMine++;
-                                    Board[surroundingCell[3] / 100 - 1, surroundingCell[3] % 100].SurroundingMine++;
-                                    Board[surroundingCell[4] / 100 - 1, surroundingCell[4] % 100].SurroundingMine++;
-                                }
+                                Board[surroundingCell[1] / 100 - 1, surroundingCell[1] % 100].SurroundingMine++;
+                                Board[surroundingCell[2] / 100 - 1, surroundingCell[2] % 100].SurroundingMine++;
+                                Board[surroundingCell[4] / 100 - 1, surroundingCell[4] % 100].SurroundingMine++;
                             }
                         }
-                        else if (y == 0 && i!=0 && i!=height-1)              //numberring collume 1
+                        else if(i == height - 1 && y == width - 1)//numberring corner cell no.4
                         {
-                            if (y < 10)
+                            if (y < 9)
+                            {
+                                Board[surroundingCell[0] / 10 - 1, surroundingCell[0] % 10].SurroundingMine++;
+                                Board[surroundingCell[1] / 10 - 1, surroundingCell[1] % 10].SurroundingMine++;
+                                Board[surroundingCell[3] / 10 - 1, surroundingCell[3] % 10].SurroundingMine++;
+                            }
+                            else
+                            {
+                                Board[surroundingCell[0] / 100 - 1, surroundingCell[0] % 100].SurroundingMine++;
+                                Board[surroundingCell[1] / 100 - 1, surroundingCell[1] % 100].SurroundingMine++;
+                                Board[surroundingCell[3] / 100 - 1, surroundingCell[3] % 100].SurroundingMine++;
+                            }
+                        }
+                        else if(i == 0 && y != 0 && y != width - 1)//numberring other cell on row 1
+                        {
+                            if (y < 9)
+                            {
+                                Board[surroundingCell[3] / 10 - 1, surroundingCell[3] % 10].SurroundingMine++;
+                                Board[surroundingCell[4] / 10 - 1, surroundingCell[4] % 10].SurroundingMine++;
+                                Board[surroundingCell[5] / 10 - 1, surroundingCell[5] % 10].SurroundingMine++;
+                                Board[surroundingCell[6] / 10 - 1, surroundingCell[6] % 10].SurroundingMine++;
+                                Board[surroundingCell[7] / 10 - 1, surroundingCell[7] % 10].SurroundingMine++;
+                            }
+                            else
+                            {
+                                Board[surroundingCell[3] / 100 - 1, surroundingCell[3] % 100].SurroundingMine++;
+                                Board[surroundingCell[4] / 100 - 1, surroundingCell[4] % 100].SurroundingMine++;
+                                Board[surroundingCell[5] / 100 - 1, surroundingCell[5] % 100].SurroundingMine++;
+                                Board[surroundingCell[6] / 100 - 1, surroundingCell[6] % 100].SurroundingMine++;
+                                Board[surroundingCell[7] / 100 - 1, surroundingCell[7] % 100].SurroundingMine++;
+                            }
+                        }
+                        else if(i == height - 1 && y != 0 && y != width - 1)//numberring other cell on lart row
+                        {
+                            if (y < 9)
+                            {
+                                Board[surroundingCell[0] / 10 - 1, surroundingCell[0] % 10].SurroundingMine++;
+                                Board[surroundingCell[1] / 10 - 1, surroundingCell[1] % 10].SurroundingMine++;
+                                Board[surroundingCell[2] / 10 - 1, surroundingCell[2] % 10].SurroundingMine++;
+                                Board[surroundingCell[3] / 10 - 1, surroundingCell[3] % 10].SurroundingMine++;
+                                Board[surroundingCell[4] / 10 - 1, surroundingCell[4] % 10].SurroundingMine++;
+                            }
+                            else
+                            {
+                                Board[surroundingCell[0] / 100 - 1, surroundingCell[0] % 100].SurroundingMine++;
+                                Board[surroundingCell[1] / 100 - 1, surroundingCell[1] % 100].SurroundingMine++;
+                                Board[surroundingCell[2] / 100 - 1, surroundingCell[2] % 100].SurroundingMine++;
+                                Board[surroundingCell[3] / 100 - 1, surroundingCell[3] % 100].SurroundingMine++;
+                                Board[surroundingCell[4] / 100 - 1, surroundingCell[4] % 100].SurroundingMine++;
+                            }
+                        }
+                        else if(y == 0 && i != height - 1 && i != 0)//numberring other cell on collumn 1
+                        {
+                            if (y < 9)
                             {
                                 Board[surroundingCell[1] / 10 - 1, surroundingCell[1] % 10].SurroundingMine++;
                                 Board[surroundingCell[2] / 10 - 1, surroundingCell[2] % 10].SurroundingMine++;
@@ -183,9 +166,9 @@ namespace MINE.Data
                                 Board[surroundingCell[7] / 100 - 1, surroundingCell[7] % 100].SurroundingMine++;
                             }
                         }
-                        else if (y == width - 1 && i != 0 && i != height - 1)      //numberring last collume
+                        else if(y == width - 1 && i != height - 1 && i != 0)//numberring other cell on last collumn
                         {
-                            if (y < 10)
+                            if (y < 9)
                             {
                                 Board[surroundingCell[0] / 10 - 1, surroundingCell[0] % 10].SurroundingMine++;
                                 Board[surroundingCell[1] / 10 - 1, surroundingCell[1] % 10].SurroundingMine++;
@@ -202,11 +185,11 @@ namespace MINE.Data
                                 Board[surroundingCell[6] / 100 - 1, surroundingCell[6] % 100].SurroundingMine++;
                             }
                         }
-                        else                          //numberring orther cell
+                        else if(i != height - 1 && i != 0 && y != 0 && y != width - 1)//numberring orther cell
                         {
-                            if (y < 10)
+                            if (y < 9)
                             {
-                                for(int z = 0; z < 8; z++)
+                                for (int z = 0; z < 8; z++)
                                 {
                                     Board[surroundingCell[z] / 10 - 1, surroundingCell[z] % 10].SurroundingMine++;
                                 }
@@ -218,7 +201,6 @@ namespace MINE.Data
                                     Board[surroundingCell[z] / 100 - 1, surroundingCell[z] % 100].SurroundingMine++;
                                 }
                             }
-                          
                         }
                     }
                 }
