@@ -1,27 +1,24 @@
 ﻿<Properties StartupConfiguration="{6F8D2971-1C98-4A8A-94EA-D2708C4EFEA8}|Default">
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.MINE PreferredExecutionTarget="MonoDevelop.Default" />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="MINE/Data/BoardData.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MINE/MainWindow.axaml.cs">
     <Files>
       <File FileName="MINE/UI/Board.cs" />
       <File FileName="MINE/MainWindow.axaml" Line="1" Column="1" />
-      <File FileName="MINE/MainWindow.axaml.cs" Line="28" Column="57" />
-      <File FileName="MINE/Data/BoardData.cs" Line="40" Column="51" />
+      <File FileName="MINE/MainWindow.axaml.cs" Line="49" Column="9" />
+      <File FileName="MINE/Data/BoardData.cs" Line="68" Column="26" />
       <File FileName="MINE/Data/CellData.cs" Line="16" Column="10" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="MINE" expanded="True">
+          <Node name="MINE">
             <Node name="MINE">
-              <Node name="Data" expanded="True">
-                <Node name="BoardData.cs" selected="True" />
+              <Node name="MainWindow.axaml" expanded="True">
+                <Node name="MainWindow.axaml.cs" selected="True" />
               </Node>
-              <Node name="MainWindow.axaml" expanded="True" />
             </Node>
           </Node>
         </State>
@@ -33,5 +30,7 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.ItemProperties.MINE PreferredExecutionTarget="MonoDevelop.Default" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
 </Properties>
