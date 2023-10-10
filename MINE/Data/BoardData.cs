@@ -16,7 +16,7 @@ namespace MINE.Data
 			width = Col;
         }
         //the createboard() function is too place the mine and numberring the cell
-		public CellData[,] CreateBoard()
+		public CellData[,] CreateBoard(string setDifficulty)
 		{
             CellData[,] Board= new CellData[height,width];
             //fix "object reference not set to an instance of an object" error
@@ -28,25 +28,48 @@ namespace MINE.Data
                 }
             }
 
-            //place mine
-            for (int i = 0; i < height; i++)
+            //set difficulty
+            int numberOfMine = -1;
+            if(setDifficulty=="easy")
             {
-                for (int y = 0; y < width; y++)
+                numberOfMine = 30;
+            }
+            else if(setDifficulty == "medium")
+            {
+                numberOfMine = 45;
+            }
+
+            //place mine
+            while(true)
+            {
+                if (numberOfMine == 0)
                 {
-                    Random temp = new Random();
-                    int temp2 = temp.Next(1, 100);
-                    if (temp2 > 0 && temp2 <= 15)
+                    break;
+                }
+                for (int i = 0; i < height; i++)
+                {
+                    if (numberOfMine == 0)
                     {
-                        Board[i, y].IsMine = true;
-                        Board[i, y].SurroundingMine = 9;
+                        break;
                     }
-                    else
+                    for (int y = 0; y < width; y++)
                     {
-                        Board[i, y].IsMine = false;
-                        Board[i, y].SurroundingMine = 0;
+                        if (numberOfMine == 0)
+                        {
+                            break;
+                        }
+                        Random temp = new Random();
+                        int temp2 = temp.Next(1, 100);
+                        if (temp2 > 0 && temp2 <= 13 && Board[i, y].IsMine != true)
+                        {
+                            Board[i, y].IsMine = true;
+                            Board[i, y].SurroundingMine = 9;
+                            numberOfMine--;
+                        }
                     }
                 }
             }
+
 
 
             //numberring cell

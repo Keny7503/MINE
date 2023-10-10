@@ -39,7 +39,7 @@ public partial class MainWindow : Window
         
 
         BoardData Board = new BoardData(row, column);
-        CellData[,] BoardData = Board.CreateBoard();
+        CellData[,] BoardData = Board.CreateBoard("medium");
         int[,] UIBoard = Board.UIBoard(BoardData);
 
 
