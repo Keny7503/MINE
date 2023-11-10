@@ -5,6 +5,8 @@ using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml.MarkupExtensions;
+using Avalonia.Media;
+using Avalonia.VisualTree;
 
 namespace MINE.UI;
 
@@ -19,8 +21,17 @@ public class Board: Panel
     private int _revealedCell;
     private int _mineCount;
     private int _mineLeft;
-    public TextBlock _mineLeftText;
-    
+    public TextBlock _mineLeftText = new TextBlock
+    {
+        HorizontalAlignment = HorizontalAlignment.Center,
+        FontSize = 40,
+    };
+
+    private Panel headerBar = new Panel
+    {
+        
+    };
+
     public event WinEventHandler OnWin;
     
 
@@ -30,25 +41,22 @@ public class Board: Panel
         _revealedCell = 0;
         _column = table.GetLength(0);
         _row = table.GetLength(1);
+        Cell.Size = ((int)this.GetTransformedBounds().Value.Clip.Bottom)/20; 
         
         
         // create StackPanels on another StackPanel to make a grid of Cell
         var colunmStackPanel = new StackPanel
         {
-            HorizontalAlignment= HorizontalAlignment.Center,
+            HorizontalAlignment = HorizontalAlignment.Center,
             VerticalAlignment = VerticalAlignment.Center,
         };
         
         
         
         // Test button
-        var testBtn = new Button();
-        _mineLeftText = new TextBlock();
-        colunmStackPanel.Children.Add(testBtn);
-        colunmStackPanel.Children.Add(_mineLeftText);
-
+        headerBar.Children.Add(_mineLeftText);
+        colunmStackPanel.Children.Add(headerBar);
         
-        testBtn.Click += onClick;
         
         void onClick(object? sender, RoutedEventArgs e)
         {
@@ -90,7 +98,8 @@ public class Board: Panel
                     _cellBoard[i,j] = new MineCell();
                     (_cellBoard[i, j] as MineCell).OnLose += () =>
                     {
-                        _mineLeftText.Text = "KABOOOOOOOOOOOOOOOOOOOOOOOOM"; };
+                        _mineLeftText.Text = "KABOOOOOOOOOOOOOOOOOOOOOOOOM"; 
+                    };
                     _mineCount++;
                 }
                 _cellBoard[i, j].OnReveal += OnCellReveal;

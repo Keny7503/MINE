@@ -16,10 +16,8 @@ public delegate void RevealEventHandler();
 // This Class is intended to be inherited
 public class Cell :Panel
 {
-    private const int size= 60;
-
-
-
+    private static int size = 50;
+    
     public bool _revealed;
     public bool _flaged;
     
@@ -90,6 +88,11 @@ public class Cell :Panel
         _button.Click += onLeftClick;
         _button.PointerPressed += onRightClick;
         
+    }
+
+    public static int Size
+    {
+        set { size = value; }
     }
 
     public void Highlight()
