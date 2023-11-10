@@ -5,6 +5,7 @@ using Avalonia.Animation;
 using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
+using Avalonia.Layout;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
@@ -14,7 +15,16 @@ namespace MINE.UI
 {
 	public class Menu: Panel
 	{
-		public readonly Button playButton;
+		private readonly Button playButton;
+		private ListBox difficultyList = new ListBox
+		{
+			Items = { "Easy","Medium","HUMANLY IMPOSIBLE" }
+		};
+
+		private Image backgroundImage = new Image
+		{
+			Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/menu.png"))),
+		};
 		int[,] UIBoard;
         int Row_th;
         int Col_th;
@@ -26,7 +36,17 @@ namespace MINE.UI
             playButton = new Button();
 			playButton.Content = "Click me";
             playButton.Click += PlayButton_Click;
-			this.Children.Add(playButton);
+            StackPanel stackPanel = new StackPanel
+            {
+	            Orientation = Orientation.Vertical,
+	            VerticalAlignment = VerticalAlignment.Center,
+	            HorizontalAlignment = HorizontalAlignment.Center,
+            };
+            stackPanel.Children.Add(playButton);
+            stackPanel.Children.Add(difficultyList);
+            this.Children.Add(backgroundImage);
+
+            this.Children.Add(stackPanel);
 		}
 
         private void PlayButton_Click(object? sender, RoutedEventArgs e)

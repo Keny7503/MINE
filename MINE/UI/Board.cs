@@ -6,6 +6,8 @@ using Avalonia.Interactivity;
 using Avalonia.Layout;
 using Avalonia.Markup.Xaml.MarkupExtensions;
 using Avalonia.Media;
+using Avalonia.Media.Imaging;
+using Avalonia.Platform;
 using Avalonia.VisualTree;
 
 namespace MINE.UI;
@@ -31,6 +33,10 @@ public class Board: Panel
     {
         
     };
+    private Image backgroundImage = new Image
+    {
+        Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/BombBG.png"))),
+    };
 
     public event WinEventHandler OnWin;
     
@@ -42,7 +48,9 @@ public class Board: Panel
         _column = table.GetLength(0);
         _row = table.GetLength(1);
         Cell.Size = ((int)this.GetTransformedBounds().Value.Clip.Bottom)/20; 
-        
+        this.Children.Add(backgroundImage);
+        BackgroundAnimation brA = new BackgroundAnimation();
+        this.Children.Add(brA);
         
         // create StackPanels on another StackPanel to make a grid of Cell
         var colunmStackPanel = new StackPanel
@@ -126,6 +134,9 @@ public class Board: Panel
         HighlightCell(hlRow,hlColumn);
         _mineLeft = _mineCount;
         _mineLeftText.Text = _mineLeft.ToString();
+
+
+        
 
 
     }

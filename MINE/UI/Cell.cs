@@ -97,8 +97,11 @@ public class Cell :Panel
 
     public void Highlight()
     {
-        _button.Opacity = 0.5;
+        _button.Opacity = 1;
         _button.Content = "Start";
+        _button.FontWeight = FontWeight.Bold;
+        _button.Foreground = Brushes.Black;
+        _button.Background = Brushes.Chartreuse;
     }
 
     private void onLeftClick(object? sender, RoutedEventArgs e)     // sender this the object
