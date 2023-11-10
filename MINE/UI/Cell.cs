@@ -11,6 +11,7 @@ using Avalonia.Styling;
 
 namespace MINE.UI;
 
+public delegate void RevealEventHandler();
 
 // This Class is intended to be inherited
 public class Cell :Panel
@@ -18,6 +19,9 @@ public class Cell :Panel
 
     public bool _revealed;
     public bool _flaged;
+    
+    // This action is for the user of the class to get the
+    public event RevealEventHandler OnReveal;
 
 
     public readonly Button _button;
@@ -27,7 +31,9 @@ public class Cell :Panel
         // Set up innitial value for Cell
         _revealed = false;
         _flaged = false;
-
+        
+        
+        // Set up UI elements
         _button = new Button
         {
             Width = 40,
@@ -64,71 +70,74 @@ public class Cell :Panel
         };
         
         
-        // _button.Height = 40;
-        // _button.Width = 40;
-        // _button.Opacity = 0.0;
+        _image = new Image
+        {
+            Height = 40,
+            Width = 40,
+            Source = new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/cell.png")))
+        };
         
-        _image = new Image();
-        _image.Height = 40;
-        _image.Width = 40;
-        _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/cell.png")));
         
         this.Children.Add(_image);
         this.Children.Add(_button);
         
         
         // add method to events to handel left mouse click and mouse right click 
-        _button.PointerPressed += onRightClick;
         _button.Click += onLeftClick;
-
+        _button.PointerPressed += onRightClick;
+        
     }
 
-    protected virtual void onLeftClick(object? sender, RoutedEventArgs e)     // sender this the object
+    public void Highlight()
     {
-        
+        _button.Opacity = 0.5;
+        _button.Content = "Start";
+    }
+
+    private void onLeftClick(object? sender, RoutedEventArgs e)     // sender this the object
+    {
+        LeftClick();
+    }
+    
+    
+    public void LeftClick()
+    {
+        Debug.WriteLine("Left");
         if (!_flaged)
         {
-            ((sender as Button)!).IsEnabled = false;
-            Debug.WriteLine("L");
-
+            this.IsEnabled = false;
             _revealed = true;
             ExtentFuctionLeftClick();
-            
+
+            if (OnReveal != null)
+            {
+                OnReveal();
+            }
             
         }
-
-        
     }
-
+    
     private void onRightClick(object? sender, PointerPressedEventArgs e)
     {
-        if (e.Pointer.IsPrimary)
+        Debug.WriteLine("Right");
+        if (!_revealed)
         {
-            Debug.WriteLine("R");
-
-            if (!_revealed)
+            _flaged = !_flaged;
+            if (_flaged)
             {
-                _flaged = !_flaged;
-                if (_flaged)
-                {
-                    _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/flag.png")));
-                }
-                else
-                {
-                    _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/cell.png")));
-
-                }
+                _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/flag.png")));
             }
+            else
+            {
+                _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/cell.png")));
 
-            ExtentFuctionRightClick();
-   
+            }
         }
-    }
+        ExtentFuctionRightClick();
 
-    protected virtual void ExtentFuctionLeftClick()
-    {
-        
     }
+   
+    protected virtual void ExtentFuctionLeftClick() { }
     protected virtual void ExtentFuctionRightClick() { }
     
     

@@ -1,24 +1,60 @@
+using System;
+using System.Diagnostics;
 using Avalonia.Controls;
+using Avalonia.Input;
+using Avalonia.Interactivity;
 using Avalonia.Layout;
+using Avalonia.Markup.Xaml.MarkupExtensions;
 
 namespace MINE.UI;
+
+
+public delegate void WinEventHandler();
 
 public class Board: Panel
 {
     private int _column;
     private int _row;
-    public readonly Cell[,] CellBoard ;
+    private readonly Cell[,] _cellBoard ;
+    private int _revealedCell;
+    private int _mineCount;
+    private int _mineLeft;
+    public TextBlock _mineLeftText;
+    
+    public event WinEventHandler OnWin;
+    
 
-
-    // seperate setting up creating UI from the contructor for more freedom when creating and using this class
-    public void SetTable(int[,] table)
+    // separate setting up creating UI from the constructor for more freedom when creating and using this class
+    public void SetTable(int[,] table, int hlRow, int hlColumn)
     {
+        _revealedCell = 0;
         _column = table.GetLength(0);
         _row = table.GetLength(1);
         
         
         // create StackPanels on another StackPanel to make a grid of Cell
         var colunmStackPanel = new StackPanel();
+        
+        
+        
+        // Test button
+        var testBtn = new Button();
+        _mineLeftText = new TextBlock();
+        colunmStackPanel.Children.Add(testBtn);
+        colunmStackPanel.Children.Add(_mineLeftText);
+
+        
+        testBtn.Click += onClick;
+        
+        void onClick(object? sender, RoutedEventArgs e)
+        {
+            ClickAt(0,1);
+            Debug.WriteLine("testBtn "+_revealedCell);
+        }
+        
+        
+        
+        
         colunmStackPanel.Orientation = Orientation.Vertical;
         for (int i = 0; i < _column; i++)
         {
@@ -30,56 +66,90 @@ public class Board: Panel
                 // the table parameter use for mapping value from 0 to 9 to Cell on screen with 9 representing mines
                 if (table[i, j] > 0 && table[i, j] < 9)
                 {
-                    CellBoard[i,j] = new NumCell(table[i,j]);
+                    _cellBoard[i,j] = new NumCell(table[i,j]);
+                    
                 }
                 else if (table[i, j] == 0)
                 {
-                    CellBoard[i, j] = new EmptyCell();
+                    _cellBoard[i, j] = new EmptyCell();
                     var localJ = j;
                     var localI = i;
-                    CellBoard[i, j]._button.Click += (sender, e) =>
+                    _cellBoard[i, j]._button.Click += (sender, e) =>
                     {
-                        ClickSurrroundCell(localI,localJ);
-        
+                        Debug.WriteLine("Empty click");
+                        ClickSurroundCell(localI,localJ);
+
                     };
-                        
                 }
                 else
                 {
-                    CellBoard[i,j] = new MineCell();
+                    _cellBoard[i,j] = new MineCell();
+                    (_cellBoard[i, j] as MineCell).OnLose += () =>
+                    {
+                        _mineLeftText.Text = "KABOOOOOOOOOOOOOOOOOOOOOOOOM"; };
+                    _mineCount++;
                 }
-                
+                _cellBoard[i, j].OnReveal += OnCellReveal;
 
-                rowStackPanel.Children.Add(CellBoard[i,j]);
+                rowStackPanel.Children.Add(_cellBoard[i,j]);
                 
             }
         }
-        this.Children.Add(colunmStackPanel);
         
+        // set flag trigger
+        for (int i = 0; i < _column; i++)
+        {
+            for (int j = 0; j < _row; j++)
+            {
+                _cellBoard[i, j].PointerPressed += OnCellFlag;
+            }
+        }
+        
+        //Wining condition
+        OnWin += () => { _mineLeftText.Text = "WINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";};
 
-        // var testBtn = new Button();
-        // colunmStackPanel.Children.Add(testBtn);
-        // testBtn.Click += onClick;
-        //
-        // void onClick(object? sender, RoutedEventArgs e)
-        // {
-        //     ClickAt(0,1);
-        //     Debug.WriteLine("testBtn");
-        // }
+        
+        this.Children.Add(colunmStackPanel);
+        HighlightCell(hlRow,hlColumn);
+        _mineLeft = _mineCount;
+        _mineLeftText.Text = _mineLeft.ToString();
+
+
     }
 
-    // private void onTriggerEmpty(object? sender, RoutedEventArgs e)
-    // {
-    //     // (sender as EmptyCell)
-    //     
-    //
-    //     // ClickSurrroundCell((sender as EmptyCell).column_cord, (sender as EmptyCell).row_cord);
-    //     Debug.WriteLine((sender as EmptyCell).column_cord+""+ (sender as EmptyCell).row_cord);
-    // }
+    private void OnCellFlag(object? sender, PointerPressedEventArgs e)
+    {
+        if ((sender as Cell)._flaged)
+        {
+            _mineLeft--;
+            
+            
+        }
+        else
+        {
+            _mineLeft++;
+        }
+        _mineLeftText.Text = _mineLeft.ToString();
+    }
+    
+
+    private void OnCellReveal()
+    {
+        _revealedCell++;
+        if (_revealedCell >= (_column * _row - _mineCount))
+        {
+            Debug.WriteLine("Win");
+
+            if (OnWin != null)
+            {
+                OnWin();
+            }
+        }
+    }
+    
 
 
-
-    private void ClickSurrroundCell(int column, int row)
+    private void ClickSurroundCell(int column, int row)
     {
         // Debug.WriteLine("click next empty");
 
@@ -94,12 +164,7 @@ public class Board: Panel
                     continue;
                 }
                 ClickAt(i,j);
-                // Debug.WriteLine(btnBoard[column,row]._revealed);
-                // if (btnBoard[column,row]._revealed)
-                // {
-                //     ClickAt(i,j);
-                //     
-                // }
+        
             }
         }
         
@@ -111,22 +176,27 @@ public class Board: Panel
     {
 
         // Prevent clicking if the cell is mine or flagged or revealed
-        if ((CellBoard[column, row].GetType() == typeof(MineCell))||
-            (CellBoard[column, row]._flaged)||
-            CellBoard[column, row]._revealed)
+        if ((_cellBoard[column, row].GetType() == typeof(MineCell))||
+            (_cellBoard[column, row]._flaged)||
+            _cellBoard[column, row]._revealed)
         {
             return;
         }
-        (CellBoard[column,row] as NumCell)?.ExternalClick();
+        (_cellBoard[column,row] as NumCell)?.LeftClick();
 
         
-        if (CellBoard[column, row].GetType() == typeof(EmptyCell))
+        if (_cellBoard[column, row].GetType() == typeof(EmptyCell))
         {
-            ClickSurrroundCell(column,row);
+            ClickSurroundCell(column,row);
             
         }
 
 
+    }
+
+    public void HighlightCell(int row, int column)
+    {
+        _cellBoard[row,column].Highlight();
     }
 
     public void RevealAll()
@@ -145,7 +215,8 @@ public class Board: Panel
     // Contructor use for pre-determine the size of the array
     public Board(int row, int column)
     {
-        CellBoard= new Cell[row,column];
+        _cellBoard= new Cell[row,column];
+        
     }
 
 }

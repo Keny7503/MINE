@@ -28,24 +28,9 @@ public class NumCell: Cell
 
     }
 
-    protected override void onLeftClick(object? sender, RoutedEventArgs e)
-    {
-        
-        ExternalClick();
-    }
+    
 
-    public void ExternalClick()
-    {
-        if (!_flaged)
-        {
-            this.IsEnabled = false;
-            Debug.WriteLine("L");
-            _revealed = true;
-            ExtentFuctionLeftClick();
-            
-            
-        }
-    }
+    
 
 
 }

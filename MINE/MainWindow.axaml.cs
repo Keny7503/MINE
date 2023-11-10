@@ -56,11 +56,10 @@ public partial class MainWindow : Window
 
         var board = new Board(row,column);
         RootPanel.Children.Add(board);
-        board.SetTable(UIBoard);
-        
-        
+        board.SetTable(UIBoard, row_th,col_th);
+
         // Uncomment the below if you want to see the hold board
-        //board.RevealAll();
+        // board.RevealAll();
 
 
     }

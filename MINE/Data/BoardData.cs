@@ -240,7 +240,7 @@ namespace MINE.Data
                 {
                     UIBoard[i, y] = Board[i, y].SurroundingMine;
                     int temp2 = temp.Next(1, 2);
-                    if (Board[i, y].IsMine == false && temp2==1 && row_th==0)
+                    if (Board[i, y].IsMine == false && temp2==1 && row_th==0 && Board[i,y].SurroundingMine==0)
                     {
                         row_th = i;
                         col_th = y;
