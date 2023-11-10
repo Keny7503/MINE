@@ -16,6 +16,9 @@ public delegate void RevealEventHandler();
 // This Class is intended to be inherited
 public class Cell :Panel
 {
+    private const int size= 60;
+
+
 
     public bool _revealed;
     public bool _flaged;
@@ -36,8 +39,8 @@ public class Cell :Panel
         // Set up UI elements
         _button = new Button
         {
-            Width = 40,
-            Height = 40,
+            Width = size,
+            Height = size,
             Styles =
             {
                 new Style(x => x.OfType<Button>())
@@ -72,8 +75,9 @@ public class Cell :Panel
         
         _image = new Image
         {
-            Height = 40,
-            Width = 40,
+            Height = size,
+            Width = size,
+            Stretch = Stretch.Fill,
             Source = new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/cell.png")))
         };
         

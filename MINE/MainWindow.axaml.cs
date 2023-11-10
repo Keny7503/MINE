@@ -10,12 +10,13 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-
-
-        
-        
         const int row = 15;
         const int column = 20;
+        
+        // Start Menu
+        
+        
+        
         
         
         //int[,] placeHolderTable =
@@ -37,7 +38,7 @@ public partial class MainWindow : Window
         //    {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0}
         //};
         
-
+        
         BoardData Board = new BoardData(row, column);
 
         //is this to save the number of mines
@@ -57,7 +58,7 @@ public partial class MainWindow : Window
         var board = new Board(row,column);
         RootPanel.Children.Add(board);
         board.SetTable(UIBoard, row_th,col_th);
-
+        
         // Uncomment the below if you want to see the hold board
         // board.RevealAll();
 

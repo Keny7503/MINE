@@ -33,7 +33,11 @@ public class Board: Panel
         
         
         // create StackPanels on another StackPanel to make a grid of Cell
-        var colunmStackPanel = new StackPanel();
+        var colunmStackPanel = new StackPanel
+        {
+            HorizontalAlignment= HorizontalAlignment.Center,
+            VerticalAlignment = VerticalAlignment.Center,
+        };
         
         
         
@@ -105,7 +109,7 @@ public class Board: Panel
             }
         }
         
-        //Wining condition
+        //Winning condtion
         OnWin += () => { _mineLeftText.Text = "WINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";};
 
         
