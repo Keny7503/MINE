@@ -16,7 +16,7 @@ namespace MINE.Data
 			width = Col;
         }
         //the createboard() function is too place the mine and numberring the cell
-		public CellData[,] CreateBoard(string setDifficulty)
+		public CellData[,] CreateBoard(string setDifficulty,ref int numberOfMine)
 		{
             CellData[,] Board= new CellData[height,width];
             //fix "object reference not set to an instance of an object" error
@@ -29,7 +29,6 @@ namespace MINE.Data
             }
 
             //set difficulty
-            int numberOfMine = -1;
             if(setDifficulty=="easy")
             {
                 numberOfMine = 30;
@@ -231,14 +230,21 @@ namespace MINE.Data
             return Board;
 		}
         //the UIboard() function is for the UI
-		public int[,] UIBoard(CellData[,] Board)
+		public int[,] UIBoard(CellData[,] Board,ref int row_th,ref int col_th)
 		{
-			int[,] UIBoard = new int[height, width];
+            Random temp = new Random();
+            int[,] UIBoard = new int[height, width];
             for (int i = 0; i < height; i++)
             {
                 for (int y = 0; y < width; y++)
                 {
                     UIBoard[i, y] = Board[i, y].SurroundingMine;
+                    int temp2 = temp.Next(1, 2);
+                    if (Board[i, y].IsMine == false && temp2==1 && row_th==0)
+                    {
+                        row_th = i;
+                        col_th = y;
+                    }
                 }
             }
             return UIBoard;

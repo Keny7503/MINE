@@ -39,8 +39,19 @@ public partial class MainWindow : Window
         
 
         BoardData Board = new BoardData(row, column);
-        CellData[,] BoardData = Board.CreateBoard("medium");
-        int[,] UIBoard = Board.UIBoard(BoardData);
+
+        //is this to save the number of mines
+        int numberOfMine = -1;
+
+        //set the difficulty, place the mine, numbering the cell
+        CellData[,] BoardData = Board.CreateBoard("medium",ref numberOfMine);
+
+        //is this to save the empty cell
+        int row_th = 0;
+        int col_th = 0;
+
+        //create the UIboard
+        int[,] UIBoard = Board.UIBoard(BoardData, ref row_th, ref col_th);
 
 
         var board = new Board(row,column);
@@ -49,7 +60,7 @@ public partial class MainWindow : Window
         
         
         // Uncomment the below if you want to see the hold board
-        board.RevealAll();
+        //board.RevealAll();
 
 
     }
