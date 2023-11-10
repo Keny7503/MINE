@@ -1,6 +1,5 @@
 using Avalonia.Controls;
 using MINE.Data;
-
 using MINE.UI;
 
 namespace MINE;
@@ -55,9 +54,15 @@ public partial class MainWindow : Window
         int[,] UIBoard = Board.UIBoard(BoardData, ref row_th, ref col_th);
 
 
-        var board = new Board(row,column);
-        RootPanel.Children.Add(board);
-        board.SetTable(UIBoard, row_th,col_th);
+        UI.Menu menuGame = new UI.Menu(UIBoard,row_th,col_th);
+        RootPanel.Children.Add(menuGame);
+        
+
+        //var board = new Board(row,column);
+        //RootPanel.Children.Add(board);
+        //board.SetTable(UIBoard);
+
+
         
         // Uncomment the below if you want to see the hold board
         // board.RevealAll();
