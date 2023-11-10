@@ -1,36 +1,32 @@
 ﻿<Properties StartupConfiguration="{6F8D2971-1C98-4A8A-94EA-D2708C4EFEA8}|Default">
-  <MonoDevelop.Ide.ItemProperties.MINE PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.Workbench ActiveDocument="MINE/MainWindow.axaml.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="MINE/Data/CellData.cs">
     <Files>
-      <File FileName="MINE/UI/Board.cs" />
-      <File FileName="MINE/MainWindow.axaml" Line="1" Column="1" />
-      <File FileName="MINE/MainWindow.axaml.cs" Line="49" Column="9" />
-      <File FileName="MINE/Data/BoardData.cs" Line="68" Column="26" />
+      <File FileName="MINE/MainWindow.axaml" />
+      <File FileName="MINE/MainWindow.axaml.cs" Line="56" Column="1" />
+      <File FileName="MINE/Data/BoardData.cs" Line="18" Column="38" />
       <File FileName="MINE/Data/CellData.cs" Line="16" Column="10" />
+      <File FileName="MINE/UI/Board.cs" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="MINE">
-            <Node name="MINE">
-              <Node name="MainWindow.axaml" expanded="True">
-                <Node name="MainWindow.axaml.cs" selected="True" />
+            <Node name="MINE" expanded="True">
+              <Node name="Data" expanded="True">
+                <Node name="CellData.cs" selected="True" />
               </Node>
+              <Node name="MainWindow.axaml" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
-      <Pad Id="MonoDevelop.Debugger.WatchPad">
-        <State>
-          <Value>surroundingCell</Value>
-        </State>
-      </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.ItemProperties.MINE PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>
