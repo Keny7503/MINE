@@ -27,4 +27,13 @@
     <ItemGroup>
       <None Remove="Data\" />
     </ItemGroup>
+    <ItemGroup>
+      <Compile Update="UI\Board.axmal.cs">
+        <DependentUpon>Board.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="UI\EndGameScreen.axaml.cs">
+        <DependentUpon>EndGameScreen.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+    </ItemGroup>
 </Project>

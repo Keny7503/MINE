@@ -15,7 +15,7 @@ namespace MINE.UI;
 
 public delegate void WinEventHandler();
 
-public class Board: Panel
+public partial class Board: Panel
 {
     private int _column;
     private int _row;
@@ -37,13 +37,15 @@ public class Board: Panel
     {
         Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/BombBG.png"))),
     };
-
+   
     public event WinEventHandler OnWin;
     
 
     // separate setting up creating UI from the constructor for more freedom when creating and using this class
     public void SetTable(int[,] table, int hlRow, int hlColumn)
     {
+        
+        
         _revealedCell = 0;
         _column = table.GetLength(0);
         _row = table.GetLength(1);
@@ -107,6 +109,9 @@ public class Board: Panel
                     (_cellBoard[i, j] as MineCell).OnLose += () =>
                     {
                         _mineLeftText.Text = "KABOOOOOOOOOOOOOOOOOOOOOOOOM"; 
+                        DisableAll();
+                        this.Children.Clear();
+                        this.Children.Add(new EndGameSrceen());
                     };
                     _mineCount++;
                 }
@@ -135,7 +140,7 @@ public class Board: Panel
         _mineLeft = _mineCount;
         _mineLeftText.Text = _mineLeft.ToString();
 
-
+        
         
 
 
@@ -159,6 +164,7 @@ public class Board: Panel
 
     private void OnCellReveal()
     {
+        
         _revealedCell++;
         if (_revealedCell >= (_column * _row - _mineCount))
         {
@@ -233,13 +239,25 @@ public class Board: Panel
             }
         }
     }
+    public void DisableAll()
+    {
+        for (int i = 0; i < _column; i++)
+        {
+            for (int j = 0; j < _row; j++)
+            {
+                _cellBoard[i, j]._button.IsEnabled = false;
+            }
+        }
+    }
 
 
 
     // Contructor use for pre-determine the size of the array
     public Board(int row, int column)
     {
+        InitializeComponent();
         _cellBoard= new Cell[row,column];
+        
         
     }
 

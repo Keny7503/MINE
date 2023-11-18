@@ -1,0 +1,17 @@
+<Panel xmlns="https://github.com/avaloniaui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       x:Class="MINE.UI.Board"
+       Classes="red"
+>
+       <Panel.Styles>
+              <Style Selector="Panel.red">
+                     <Setter Property="Margin" Value="0,0,0,0"/>
+              </Style>
+              <Style Selector="Panel.red:pointerover">
+                     <Setter Property="Margin" Value="0,10,0,0"/>
+                     
+              </Style>
+       </Panel.Styles>
+      
+    
+</Panel>
