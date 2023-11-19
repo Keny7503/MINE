@@ -23,6 +23,7 @@ public partial class Board: Panel
     private int _revealedCell;
     private int _mineCount;
     private int _mineLeft;
+    private LoseSrceen _loseSrceen = new LoseSrceen();
     public TextBlock _mineLeftText = new TextBlock
     {
         HorizontalAlignment = HorizontalAlignment.Center,
@@ -111,7 +112,7 @@ public partial class Board: Panel
                         _mineLeftText.Text = "KABOOOOOOOOOOOOOOOOOOOOOOOOM"; 
                         DisableAll();
                         this.Children.Clear();
-                        this.Children.Add(new EndGameSrceen());
+                        this.Children.Add(new LoseSrceen());
                     };
                     _mineCount++;
                 }
@@ -257,8 +258,13 @@ public partial class Board: Panel
     {
         InitializeComponent();
         _cellBoard= new Cell[row,column];
-        
-        
+        // _loseSrceen.PlayAgainButton.Click += (sender, args) =>
+        // {
+        //     this.Children.Remove(_loseSrceen);
+        //     Debug.WriteLine("Ping");
+        // };
+
+
     }
 
 }

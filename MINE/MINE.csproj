@@ -31,7 +31,7 @@
       <Compile Update="UI\Board.axmal.cs">
         <DependentUpon>Board.axaml</DependentUpon>
       </Compile>
-      <Compile Update="UI\EndGameScreen.axaml.cs">
+      <Compile Update="UI\LoseScreen.axaml.cs">
         <DependentUpon>EndGameScreen.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>

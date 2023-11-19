@@ -1,0 +1,45 @@
+<Panel xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="MINE.UI.LoseSrceen"
+        >
+    <Panel.Styles>
+        <Style Selector="Panel.red">
+            <Setter Property="Opacity" Value="1"/>
+            <Style.Animations>
+                <Animation 
+                    Duration="0:0:0.79"
+                    IterationCount="1"> 
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Opacity" Value="1.0"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Opacity" Value="0.0"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+    </Panel.Styles>
+
+    
+    <Image  Stretch="Fill"
+            Source="../Assets/explosion.png">
+        
+    </Image>
+    
+    
+   
+  
+    <Panel Classes="red"
+           Background="White"
+           Opacity="0.0">
+       
+    </Panel>
+    <Panel
+        Classes="red"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Height="200"
+        Width="400"
+        Name="MenuPanel"
+    ></Panel>
+</Panel>
