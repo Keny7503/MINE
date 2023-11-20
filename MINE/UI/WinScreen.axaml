@@ -10,10 +10,10 @@
                     Duration="0:0:0.79"
                     IterationCount="1"> 
                     <KeyFrame Cue="0%">
-                        <Setter Property="Opacity" Value="1.0"/>
+                        <Setter Property="Opacity" Value="0.0"/>
                     </KeyFrame>
                     <KeyFrame Cue="100%">
-                        <Setter Property="Opacity" Value="0.0"/>
+                        <Setter Property="Opacity" Value="1.0"/>
                     </KeyFrame>
                 </Animation>
             </Style.Animations>
@@ -21,19 +21,17 @@
     </Panel.Styles>
 
     
-    <Image  Stretch="Fill"
-            Source="../Assets/menu.png">
+    
+    
+    
+   <Panel Classes="red"
+       >
+       <Image  Stretch="Fill"
+               Source="../Assets/menu.png">
         
-    </Image>
-    
-    
-   
-  
-    <Panel Classes="red"
-           Background="White"
-           Opacity="0.0">
-       
-    </Panel>
+       </Image>
+   </Panel>
+
     <Panel
         HorizontalAlignment="Center"
         VerticalAlignment="Center"

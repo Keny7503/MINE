@@ -22,7 +22,7 @@
 
     
     <Image  Stretch="Fill"
-            Source="../Assets/explosion.png">
+            Source="../Assets/losebg.png">
         
     </Image>
     
