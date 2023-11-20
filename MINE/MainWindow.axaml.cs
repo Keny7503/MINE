@@ -24,10 +24,9 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-        UI.Menu menuGame = new UI.Menu();
-        RootPanel.Children.Add(menuGame);
-        RootPanel.Children.Add(_exitBtn);
         _exitBtn.Click += (sender, args) => { Close(); };
+        Reset();
+        
 
         // Uncomment the below if you want to see the hold board
         // board.RevealAll();

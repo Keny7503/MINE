@@ -18,6 +18,7 @@ public partial class LoseSrceen: Panel
         Background = Brushes.WhiteSmoke,
         Foreground = Brushes.Black,
         FontWeight = FontWeight.Bold,
+        FontSize = 20d,
         Content = "Return to Menu",
         HorizontalAlignment = HorizontalAlignment.Center,
     };
