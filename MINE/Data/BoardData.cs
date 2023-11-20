@@ -5,18 +5,23 @@ namespace MINE.Data
 	{
 		protected int width;
 		protected int height;
-		public BoardData()
+        string setDifficulty;
+        int numberOfMine;
+
+        public BoardData()
 		{
 			height = 0;
 			width = 0;
+            setDifficulty = "easy";
         }
-		public BoardData(int Row, int Col)
+		public BoardData(int Row, int Col, string setDifficulty)
 		{
 			height = Row;
 			width = Col;
+            this.setDifficulty = setDifficulty;
         }
         //the createboard() function is too place the mine and numberring the cell
-		public CellData[,] CreateBoard(string setDifficulty,ref int numberOfMine)
+		public CellData[,] CreateBoard()
 		{
             CellData[,] Board= new CellData[height,width];
             //fix "object reference not set to an instance of an object" error
@@ -29,13 +34,17 @@ namespace MINE.Data
             }
 
             //set difficulty
-            if(setDifficulty=="easy")
+            if(setDifficulty=="Easy")
             {
                 numberOfMine = 30;
             }
-            else if(setDifficulty == "medium")
+            else if(setDifficulty == "Medium")
             {
                 numberOfMine = 45;
+            }
+            else
+            {
+                numberOfMine = 60;
             }
 
             //place mine
