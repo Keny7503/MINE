@@ -13,9 +13,9 @@ public class EmptyCell: NumCell
     }
     
 
-    protected override void ExtentFuctionLeftClick()
+    protected override void ExtentFunctionLeftClick()
     {
-        _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/0.png")));
+        Image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/0.png")));
         
         
     }

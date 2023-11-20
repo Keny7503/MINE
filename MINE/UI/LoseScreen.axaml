@@ -45,7 +45,6 @@
        
     </Panel>
     <Panel
-        Classes="red"
         HorizontalAlignment="Center"
         VerticalAlignment="Bottom"
         Margin="0,0,0,150"

@@ -1,6 +1,4 @@
 using System;
-using System.Diagnostics;
-using Avalonia.Interactivity;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
 
@@ -14,15 +12,15 @@ public class NumCell: Cell
     public NumCell(int number)
     {
         _number = number;
-        _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/cell.png")));
+        Image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/cell.png")));
         
     }
 
-    protected override void ExtentFuctionLeftClick()
+    protected override void ExtentFunctionLeftClick()
     {
         if (_number>0&&_number < 9) // Safty gate
         {
-            _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/"+_number+".png")));
+            Image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/"+_number+".png")));
 
         }
 

@@ -10,9 +10,9 @@ public class MineCell: Cell
 {
     public event LoseEventHandler OnLose;
 
-    protected override void ExtentFuctionLeftClick()
+    protected override void ExtentFunctionLeftClick()
     {
-        _image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/mine.png")));
+        Image.Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/mine.png")));
         OnLose();
     }
 }

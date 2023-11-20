@@ -18,6 +18,21 @@
                 </Animation>
             </Style.Animations>
         </Style>
+        <Style Selector="Ellipse.red">
+            <Setter Property="Opacity" Value="1"/>
+            <Style.Animations>
+                <Animation 
+                    Duration="0:0:0.79"
+                    IterationCount="INFINITE"> 
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Opacity" Value="1.0"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="50%">
+                        <Setter Property="Opacity" Value="0.2"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
     </Panel.Styles>
     
  
@@ -37,6 +52,15 @@
             </LinearGradientBrush>
         </Rectangle.OpacityMask>     
     </Rectangle>
+    <Ellipse
+        Classes="red"
+        Height="20"
+        Width="20"
+        Margin="1265,320,0,0"
+        Fill="Red"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Top"
+        />
     <Rectangle 
         Classes="red" 
         Fill="Black" 

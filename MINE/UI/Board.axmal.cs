@@ -1,10 +1,9 @@
 using System;
 using System.Diagnostics;
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Input;
-using Avalonia.Interactivity;
 using Avalonia.Layout;
-using Avalonia.Markup.Xaml.MarkupExtensions;
 using Avalonia.Media;
 using Avalonia.Media.Imaging;
 using Avalonia.Platform;
@@ -23,18 +22,18 @@ public partial class Board: Panel
     private int _revealedCell;
     private int _mineCount;
     private int _mineLeft;
-    private LoseSrceen _loseSrceen = new LoseSrceen();
-    public TextBlock _mineLeftText = new TextBlock
+    private const string _mineLeftString = "Mines left: ";
+
+    public readonly TextBlock MineLeftText = new TextBlock
     {
         HorizontalAlignment = HorizontalAlignment.Center,
         FontSize = 40,
+        Foreground = Brushes.Red,
+        Margin = Thickness.Parse("0,0,0,40")
     };
 
-    private Panel headerBar = new Panel
-    {
-        
-    };
-    private Image backgroundImage = new Image
+    private readonly Panel _headerBar = new Panel();
+    private readonly Image _backgroundImage = new Image
     {
         Source =  new Bitmap(AssetLoader.Open(new Uri("avares://MINE/Assets/BombBG.png"))),
     };
@@ -50,8 +49,8 @@ public partial class Board: Panel
         _revealedCell = 0;
         _column = table.GetLength(0);
         _row = table.GetLength(1);
-        Cell.Size = ((int)this.GetTransformedBounds().Value.Clip.Bottom)/20; 
-        this.Children.Add(backgroundImage);
+        Cell.Size = ((int)this.GetTransformedBounds()!.Value.Clip.Bottom)/20; 
+        this.Children.Add(_backgroundImage);
         BackgroundAnimation brA = new BackgroundAnimation();
         this.Children.Add(brA);
         
@@ -65,19 +64,10 @@ public partial class Board: Panel
         
         
         // Test button
-        headerBar.Children.Add(_mineLeftText);
-        colunmStackPanel.Children.Add(headerBar);
-        
-        
-        void onClick(object? sender, RoutedEventArgs e)
-        {
-            ClickAt(0,1);
-            Debug.WriteLine("testBtn "+_revealedCell);
-        }
-        
-        
-        
-        
+        _headerBar.Children.Add(MineLeftText);
+        colunmStackPanel.Children.Add(_headerBar);
+
+
         colunmStackPanel.Orientation = Orientation.Vertical;
         for (int i = 0; i < _column; i++)
         {
@@ -97,7 +87,7 @@ public partial class Board: Panel
                     _cellBoard[i, j] = new EmptyCell();
                     var localJ = j;
                     var localI = i;
-                    _cellBoard[i, j]._button.Click += (sender, e) =>
+                    _cellBoard[i, j].Button.Click += (sender, e) =>
                     {
                         Debug.WriteLine("Empty click");
                         ClickSurroundCell(localI,localJ);
@@ -107,9 +97,9 @@ public partial class Board: Panel
                 else
                 {
                     _cellBoard[i,j] = new MineCell();
-                    (_cellBoard[i, j] as MineCell).OnLose += () =>
+                    ((_cellBoard[i, j] as MineCell)!).OnLose += () =>
                     {
-                        _mineLeftText.Text = "KABOOOOOOOOOOOOOOOOOOOOOOOOM"; 
+                        MineLeftText.Text = "KABOOOOOOOOOOOOOOOOOOOOOOOOM"; 
                         DisableAll();
                         this.Children.Clear();
                         this.Children.Add(new LoseSrceen());
@@ -135,7 +125,7 @@ public partial class Board: Panel
         //Winning condtion
         OnWin += () =>
         {
-            _mineLeftText.Text = "WINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";
+            MineLeftText.Text = "WINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";
             DisableAll();
             this.Children.Clear();
             this.Children.Add(new WinSrceen());
@@ -146,7 +136,7 @@ public partial class Board: Panel
         this.Children.Add(colunmStackPanel);
         HighlightCell(hlRow,hlColumn);
         _mineLeft = _mineCount;
-        _mineLeftText.Text = _mineLeft.ToString();
+        MineLeftText.Text = _mineLeftString+ _mineLeft.ToString();
 
         
         
@@ -156,7 +146,7 @@ public partial class Board: Panel
 
     private void OnCellFlag(object? sender, PointerPressedEventArgs e)
     {
-        if ((sender as Cell)._flaged)
+        if (((sender as Cell)!).Flagged)
         {
             _mineLeft--;
             
@@ -166,7 +156,7 @@ public partial class Board: Panel
         {
             _mineLeft++;
         }
-        _mineLeftText.Text = _mineLeft.ToString();
+        MineLeftText.Text = _mineLeftString+ _mineLeft.ToString();
     }
     
 
@@ -178,10 +168,7 @@ public partial class Board: Panel
         {
             Debug.WriteLine("Win");
 
-            if (OnWin != null)
-            {
-                OnWin();
-            }
+            OnWin();
         }
     }
     
@@ -215,8 +202,8 @@ public partial class Board: Panel
 
         // Prevent clicking if the cell is mine or flagged or revealed
         if ((_cellBoard[column, row].GetType() == typeof(MineCell))||
-            (_cellBoard[column, row]._flaged)||
-            _cellBoard[column, row]._revealed)
+            (_cellBoard[column, row].Flagged)||
+            _cellBoard[column, row].Revealed)
         {
             return;
         }
@@ -253,7 +240,7 @@ public partial class Board: Panel
         {
             for (int j = 0; j < _row; j++)
             {
-                _cellBoard[i, j]._button.IsEnabled = false;
+                _cellBoard[i, j].Button.IsEnabled = false;
             }
         }
     }
@@ -265,11 +252,6 @@ public partial class Board: Panel
     {
         InitializeComponent();
         _cellBoard= new Cell[row,column];
-        // _loseSrceen.PlayAgainButton.Click += (sender, args) =>
-        // {
-        //     this.Children.Remove(_loseSrceen);
-        //     Debug.WriteLine("Ping");
-        // };
 
 
     }
