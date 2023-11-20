@@ -1,6 +1,6 @@
 <Panel xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="MINE.UI.LoseSrceen"
+        x:Class="MINE.UI.WinSrceen"
         >
     <Panel.Styles>
         <Style Selector="Panel.red">
@@ -22,21 +22,11 @@
 
     
     <Image  Stretch="Fill"
-            Source="../Assets/explosion.png">
+            Source="../Assets/menu.png">
         
     </Image>
     
-    <Panel
-        HorizontalAlignment="Center"
-        VerticalAlignment="Center"
-        Margin="0,0,0,0"
-        Height="300"
-    >
-        <Image
-            Stretch="Uniform"
-            Source="../Assets/losescreen.png"
-        ></Image>
-    </Panel>
+    
    
   
     <Panel Classes="red"
@@ -45,10 +35,21 @@
        
     </Panel>
     <Panel
-        Classes="red"
+        HorizontalAlignment="Center"
+        VerticalAlignment="Center"
+        Margin="0,0,0,0"
+        Height="300"
+        >
+        <Image
+            Stretch="Uniform"
+            Source="../Assets/winscreen.png"
+        ></Image>
+    </Panel>
+    
+    <Panel
+        Margin="0,0,0,150"
         HorizontalAlignment="Center"
         VerticalAlignment="Bottom"
-        Margin="0,0,0,150"
         Height="200"
         Width="400"
         Name="MenuPanel"

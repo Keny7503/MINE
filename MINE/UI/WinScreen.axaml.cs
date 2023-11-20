@@ -12,17 +12,18 @@ using Avalonia.Platform;
 using Avalonia.Styling;
 namespace MINE.UI;
 
-public partial class LoseSrceen: Panel
+public partial class WinSrceen: Panel
 {
     public Button MenuButton = new Button  {
         Background = Brushes.WhiteSmoke,
         Foreground = Brushes.Black,
         FontWeight = FontWeight.Bold,
+        FontSize = 20.0,
         Content = "Return to Menu",
         HorizontalAlignment = HorizontalAlignment.Center,
     };
     
-    public LoseSrceen()
+    public WinSrceen()
     {
         InitializeComponent();
         MenuPanel.Children.Add(MenuButton);

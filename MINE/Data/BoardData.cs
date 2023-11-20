@@ -36,7 +36,7 @@ namespace MINE.Data
             //set difficulty
             if(setDifficulty=="Easy")
             {
-                numberOfMine = 30;
+                numberOfMine = 1;
             }
             else if(setDifficulty == "Medium")
             {

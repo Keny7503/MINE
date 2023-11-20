@@ -133,7 +133,14 @@ public partial class Board: Panel
         }
         
         //Winning condtion
-        OnWin += () => { _mineLeftText.Text = "WINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";};
+        OnWin += () =>
+        {
+            _mineLeftText.Text = "WINNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN";
+            DisableAll();
+            this.Children.Clear();
+            this.Children.Add(new WinSrceen());
+            
+        };
 
         
         this.Children.Add(colunmStackPanel);

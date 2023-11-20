@@ -1,3 +1,4 @@
+using System;
 using Avalonia.Controls;
 using MINE.Data;
 using MINE.UI;
@@ -46,5 +47,12 @@ public partial class MainWindow : Window
         // board.RevealAll();
 
 
+    }
+
+    public void Reset()
+    {
+        RootPanel.Children.Clear();
+        UI.Menu menuGame = new UI.Menu();
+        RootPanel.Children.Add(menuGame);
     }
 }

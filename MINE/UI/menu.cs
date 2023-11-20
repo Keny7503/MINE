@@ -69,6 +69,11 @@ namespace MINE.UI
             this.Children.Add(board);
             board.SetTable(UIBoard, Row_th, Col_th);
         }
+        
+        public void Reset()
+        {
+	        this.GetType().GetConstructor(Type.EmptyTypes).Invoke(this, new object[] { });
+        }
 
    //     private void PlayButton_Click(object? sender, RoutedEventArgs e)
    //     {

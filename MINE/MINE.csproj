@@ -35,5 +35,9 @@
         <DependentUpon>EndGameScreen.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="UI\WinScreen.axaml.cs">
+        <DependentUpon>WinScreen.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>
