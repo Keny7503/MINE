@@ -76,6 +76,8 @@ namespace MINE.UI
             var board = new Board(15, 20);
             this.Children.Add(board);
             board.SetTable(UIBoard, Row_th, Col_th);
+            this.Children.Add(new FadeInAnimation());
+
         }
         
 
