@@ -1,14 +1,14 @@
 <Panel xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        x:Class="MINE.UI.BackgroundAnimation"
+        x:Class="MINE.UI.FlashAnimation"
         >
     <Panel.Styles>
         <Style Selector="Rectangle.red">
             <Setter Property="Opacity" Value="1"/>
             <Style.Animations>
                 <Animation 
-                    Duration="0:0:0.9"
-                    IterationCount="INFINITE"> 
+                    Duration="0:0:0.8"
+                    IterationCount="1"> 
                     <KeyFrame Cue="0%">
                         <Setter Property="Opacity" Value="1.0"/>
                     </KeyFrame>
@@ -23,15 +23,15 @@
  
     <Rectangle 
         Classes="red" 
-        Fill="Black" 
-        Width="300" 
+        Fill="Red" 
+        Width="500" 
         HorizontalAlignment="Left"
         VerticalAlignment="Stretch"
         >
         <Rectangle.OpacityMask>
             <LinearGradientBrush StartPoint="0%,50%" EndPoint="80%,50%">
                 <LinearGradientBrush.GradientStops>
-                    <GradientStop Offset="0" Color="Black"/>
+                    <GradientStop Offset="0" Color="Red"/>
                     <GradientStop Offset="1" Color="Transparent"/>
                 </LinearGradientBrush.GradientStops>
             </LinearGradientBrush>
@@ -39,19 +39,18 @@
     </Rectangle>
     <Rectangle 
         Classes="red" 
-        Fill="Black" 
-        Width="300" 
+        Fill="Red" 
+        Width="500" 
         HorizontalAlignment="Right"
         VerticalAlignment="Stretch"
     >
         <Rectangle.OpacityMask>
             <LinearGradientBrush StartPoint="80%,50%" EndPoint="0%,50%">
                 <LinearGradientBrush.GradientStops>
-                    <GradientStop Offset="0" Color="Black"/>
+                    <GradientStop Offset="0" Color="Red"/>
                     <GradientStop Offset="1" Color="Transparent"/>
                 </LinearGradientBrush.GradientStops>
             </LinearGradientBrush>
         </Rectangle.OpacityMask>     
     </Rectangle>
-    
 </Panel>

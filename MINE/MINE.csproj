@@ -6,6 +6,7 @@
         <BuiltInComInteropSupport>true</BuiltInComInteropSupport>
         <ApplicationManifest>app.manifest</ApplicationManifest>
         <AvaloniaUseCompiledBindingsByDefault>true</AvaloniaUseCompiledBindingsByDefault>
+        <RuntimeIdentifiers>win10-x64;osx.10.12-x64;debian.8-x64</RuntimeIdentifiers>
     </PropertyGroup>
 
 
@@ -17,7 +18,7 @@
         <!--Condition below is needed to remove Avalonia.Diagnostics package from build output in Release configuration.-->
         <PackageReference Condition="'$(Configuration)' == 'Debug'" Include="Avalonia.Diagnostics" Version="11.0.2" />
 
-        <AvaloniaResource Include="Assets\*" />
+        <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
 
 
@@ -37,6 +38,17 @@
       </Compile>
       <Compile Update="UI\WinScreen.axaml.cs">
         <DependentUpon>WinScreen.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="UI\EightSegmentDisplay.axmal.cs">
+        <DependentUpon>EightSegmentDisplay.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="UI\FlashAnimation.axaml.cs">
+        <DependentUpon>FlashAnimation.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
+      <Compile Update="UI\FadeInAnimation.axaml.cs">
+        <DependentUpon>FadeInAnimation.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
     </ItemGroup>

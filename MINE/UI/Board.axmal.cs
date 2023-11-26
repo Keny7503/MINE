@@ -23,13 +23,15 @@ public partial class Board: Panel
     private int _mineCount;
     private int _mineLeft;
     private const string _mineLeftString = "Mines left: ";
+    
+    // private readonly EightSegmentDisplay _eightSegmentDisplay = new EightSegmentDisplay();
 
-    public readonly TextBlock MineLeftText = new TextBlock
+    private readonly TextBlock MineLeftText = new TextBlock
     {
         HorizontalAlignment = HorizontalAlignment.Center,
         FontSize = 40,
         Foreground = Brushes.Red,
-        Margin = Thickness.Parse("0,0,0,40")
+        Margin = Thickness.Parse("0,0,0,10")
     };
 
     private readonly Panel _headerBar = new Panel();
@@ -65,7 +67,10 @@ public partial class Board: Panel
         
         // Test button
         _headerBar.Children.Add(MineLeftText);
+
+        // colunmStackPanel.Children.Add(new EightSegmentDisplay());
         colunmStackPanel.Children.Add(_headerBar);
+
 
 
         colunmStackPanel.Orientation = Orientation.Vertical;
@@ -136,7 +141,8 @@ public partial class Board: Panel
         this.Children.Add(colunmStackPanel);
         HighlightCell(hlRow,hlColumn);
         _mineLeft = _mineCount;
-        MineLeftText.Text = _mineLeftString+ _mineLeft.ToString();
+        // _eightSegmentDisplay.SetNumber(_mineLeft);
+        MineLeftText.Text = _mineLeft.ToString();
 
         
         
@@ -149,14 +155,18 @@ public partial class Board: Panel
         if (((sender as Cell)!).Flagged)
         {
             _mineLeft--;
-            
+            this.Children.Add(new FlashAnimation());
+
             
         }
         else
         {
             _mineLeft++;
         }
-        MineLeftText.Text = _mineLeftString+ _mineLeft.ToString();
+
+        // _eightSegmentDisplay.SetNumber(_mineLeft);
+        MineLeftText.Text = _mineLeft.ToString();
+        
     }
     
 

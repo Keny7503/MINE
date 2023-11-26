@@ -17,8 +17,9 @@ public partial class MainWindow : Window
         Content = "X",
         HorizontalAlignment = HorizontalAlignment.Right,
         VerticalAlignment = VerticalAlignment.Top,
-        Background = Brushes.PaleVioletRed,
+        Background = Brushes.Red,
         Foreground = Brushes.White,
+        CornerRadius = new CornerRadius(5),
 
     };
     public MainWindow()
