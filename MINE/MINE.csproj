@@ -51,5 +51,9 @@
         <DependentUpon>FadeInAnimation.axaml</DependentUpon>
         <SubType>Code</SubType>
       </Compile>
+      <Compile Update="UI\FadeInAnimationComponent.axaml.cs">
+        <DependentUpon>FadeInAnimationComponet.axaml</DependentUpon>
+        <SubType>Code</SubType>
+      </Compile>
     </ItemGroup>
 </Project>

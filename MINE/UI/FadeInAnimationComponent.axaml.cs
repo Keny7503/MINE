@@ -10,17 +10,18 @@ using Avalonia.Styling;
 
 namespace MINE.UI;
 
-public partial class FadeInAnimation: Panel
+public partial class FadeInAnimationComponent: Panel
 {
-    public FadeInAnimation()
+    public FadeInAnimationComponent()
     {
         InitializeComponent();
+
         Kill();
+
     }
 
     private async Task Kill()
     {
-
         await Task.Delay(2000);
         (this.Parent as Panel).Children.Remove(this);
     }

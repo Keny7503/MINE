@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data.Common;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Animation;
 using Avalonia.Controls;
@@ -76,12 +77,10 @@ namespace MINE.UI
             var board = new Board(15, 20);
             this.Children.Add(board);
             board.SetTable(UIBoard, Row_th, Col_th);
-            this.Children.Add(new FadeInAnimation());
+            this.Children.Add(new FadeInAnimation());;
 
         }
-        
 
-
-    }
+	}
 }
 

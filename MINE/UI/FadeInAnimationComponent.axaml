@@ -1,0 +1,65 @@
+<Panel xmlns="https://github.com/avaloniaui"
+       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+       x:Class="MINE.UI.FadeInAnimationComponent"
+>
+   
+    <Panel.Styles>
+        <Style Selector="Border.slideup">
+            <Style.Animations>
+                <Animation 
+                    Duration="0:0:2.0"
+                    IterationCount="1"
+                > 
+                    <KeyFrame Cue="0%">
+                        <Setter Property="Margin" Value="0,0,0,0"/>
+                    </KeyFrame>
+                    <KeyFrame Cue="100%">
+                        <Setter Property="Margin" Value="0,0,0,2000"/>
+                    </KeyFrame>
+                </Animation>
+            </Style.Animations>
+        </Style>
+    </Panel.Styles>
+    <Border 
+        Classes="slideup"
+        Background="Black"
+        HorizontalAlignment="Stretch">
+        <!-- <Rectangle -->
+        <!--     Fill="Black" -->
+        <!--     Height="1200" -->
+        <!--     HorizontalAlignment="Stretch" -->
+        <!--     VerticalAlignment="Bottom" -->
+        <!--     Opacity="1.0" -->
+        <!-- > -->
+        <!--     <Rectangle.OpacityMask> -->
+        <!--         <LinearGradientBrush StartPoint="50%,0%" EndPoint="50%,50%"> -->
+        <!--             <LinearGradientBrush.GradientStops> -->
+        <!--                 <GradientStop Offset="0" Color="Black"/> -->
+        <!--                 <GradientStop Offset="1" Color="Transparent"/> -->
+        <!--             </LinearGradientBrush.GradientStops> -->
+        <!--         </LinearGradientBrush> -->
+        <!--     </Rectangle.OpacityMask> -->
+        <!-- </Rectangle> -->
+    </Border>
+
+    <!-- -->
+    <!-- <Rectangle -->
+    <!--     Classes="red" -->
+    <!--     Fill="Black" -->
+    <!--     Height="1000" -->
+    <!--     HorizontalAlignment="Stretch" -->
+    <!--     VerticalAlignment="Top" -->
+    <!--     Opacity="0.0" -->
+    <!-- > -->
+    <!--     <Rectangle.OpacityMask> -->
+    <!--         <LinearGradientBrush StartPoint="50%,0%" EndPoint="50%,100%"> -->
+    <!--             <LinearGradientBrush.GradientStops> -->
+    <!--                 <GradientStop Offset="0" Color="Black"/> -->
+    <!--                 <GradientStop Offset="1" Color="Transparent"/> -->
+    <!--             </LinearGradientBrush.GradientStops> -->
+    <!--         </LinearGradientBrush> -->
+    <!--     </Rectangle.OpacityMask> -->
+    <!-- </Rectangle> -->
+
+
+</Panel>
